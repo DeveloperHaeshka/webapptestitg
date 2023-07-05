@@ -4,10 +4,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Пример веб-страницы</title>
-        <style>  
-            body {
+        <style>
+            
+            #main {
                 display: grid;
                 place-items: center;
+            }
+
+            body {
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 200;
                 color: white;
@@ -33,7 +37,7 @@
                 background: rgb(2, 236, 2);
             }
 
-            form {
+            #form {
                 display: none;
                 place-items: center;
             }
@@ -41,7 +45,7 @@
         </style>
     </head>
 <body>
-    <div class="main" id="'main">
+    <div id="main">
         <h1>Онлайн магазин</h1>
         <p>Онлайн магазин по инфоструктуреe</p>
         <button id="buy">Купить</button>
@@ -60,8 +64,8 @@
 
         buy.addEventListener('click', () => {
             document.getElementById('main').style.display = 'none';
-            document.getElementById('form').style.display = 'grid';
-            document.getElementById('user_name').value = tg.initDataUnsafe.user.username
+            document.getElementById('form').style.display = 'block';
+            document.getElementById('user_name').value = tg.initDataUnsafe.user.username;
         });
 
     </script>
