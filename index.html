@@ -36,7 +36,6 @@
             }
 
             body {
-                text-align: center;
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 200;
                 color: white;
@@ -63,7 +62,6 @@
             }
 
             #form {
-                text-align: center;
                 display: none;
                 place-items: center;
             }
@@ -101,17 +99,16 @@
             document.getElementById('main').style.display = 'none';
             document.getElementById('form').style.display = 'grid';
         });
-
+ы
         order.addEventListener('click', () => {
             document.getElementById('error').innerText = '';
             otvet = document.getElementById('finish').value;
-
-            if(otvet in ['да', 'нет']) {
-                document.getElementById('error').innerText = '';  
-            } else {
-                document.getElementById('error').innerText = 'Да или Нет';
-                return;  
-            }
+            // if(otvet in ['да', 'нет']) {
+            //     document.getElementById('error').innerText = '';  
+            // } else {
+            //     document.getElementById('error').innerText = 'Да или Нет';
+            //     return;  
+            // }
 
             let data = {
                 otvet: otvet
@@ -119,6 +116,11 @@
 
             tg.sendData(JSON.stringify(data));
             tg.close();
+        });
+
+    </script>
+</body>
+</html>
         });
 
     </script>
