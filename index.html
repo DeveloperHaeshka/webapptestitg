@@ -75,18 +75,16 @@
     </head>
 <body>
     <div id="main">
-        <h1>Онлайн магазин</h1>
-        <p>Онлайн магазин по инфоструктуреe</p>
-        <button id="buy">Купить</button>
+        <h1>Ответье на пару вопросов</h1>
+        <p>по поводу Катюши</p>
+        <button id="buy">Ответить</button>
     </div>
     <form>
         <div id="form">
-            <h1 class="h1-from-form">Заполните данные</h1>
-            <input class="text-field__input", type="text" placeholder="Имя" id="user_name">
-            <input class="text-field__input", type="email" placeholder="Електронная почта" id="email">
-            <input class="text-field__input", type="phone" placeholder="Номер телефона" id="phone">
+            <h1 class="h1-from-form">Катя лучшая?</h1>
+            <input class="text-field__input", type="text" placeholder="Да/Нет" id="finish">
             <div id="error"></div>
-            <button id="order">Оформить</button>            
+            <button id="order">Готово</button>            
         </div>
 
     </form>
@@ -100,37 +98,24 @@
         buy.addEventListener('click', () => {
             document.getElementById('main').style.display = 'none';
             document.getElementById('form').style.display = 'grid';
-            document.getElementById('user_name').value = tg.initDataUnsafe.user.username;
         });
 
         order.addEventListener('click', () => {
             document.getElementById('error').innerText = '';
-            name = document.getElementById('user_name').value;
-            email = document.getElementById('email').value;
-            phone = document.getElementById('phone').value;
+            otvet = document.getElementById('finish').value;
 
-            if(name.length < 5) {
-                document.getElementById('error').innerText = 'Ошибка в имени';
-                return;
-            }
-
-            if(email.length < 5) {
-                document.getElementById('error').innerText = 'Ошибка в почте';
-                return;
-            }
-
-            if(phone.length < 5) {
-                document.getElementById('error').innerText = 'Ошибка в номере телефона';
-                return;
+            if(otvet in ['да', 'нет']) {
+                document.getElementById('error').innerText = '';  
+            } else {
+                document.getElementById('error').innerText = 'Да или Нет';
+                return;  
             }
 
             let data = {
-                name: name,
-                email: email,
-                phone: phone
+                otvet: otvet
             }
 
-            tg.sendData(JSON.stringify(data))
+            tg.sendData(JSON.stringify(data));
             tg.close();
         });
 
