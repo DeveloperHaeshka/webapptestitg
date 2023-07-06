@@ -85,6 +85,7 @@
             <input class="text-field__input", type="text" placeholder="Имя" id="user_name">
             <input class="text-field__input", type="email" placeholder="Електронная почта" id="email">
             <input class="text-field__input", type="phone" placeholder="Номер телефона" id="phone">
+            <div id="error"></div>
             <button id="order">Оформить</button>            
         </div>
 
@@ -94,6 +95,7 @@
         let tg = window.Telegram.WebApp;
         let buy = document.getElementById('buy');
         let order = document.getElementById('order');
+        tg.expand();
 
         buy.addEventListener('click', () => {
             document.getElementById('main').style.display = 'none';
@@ -102,7 +104,34 @@
         });
 
         order.addEventListener('click', () => {
-            tg.close()
+            document.getElementById('error').innerText = '';
+            name = document.getElementById('user_name').value;
+            email = document.getElementById('email').value;
+            phone = document.getElementById('phone').value;
+
+            if(name.length < 5) {
+                document.getElementById('error').innerText = 'Ошибка в имени';
+                return;
+            }
+
+            if(email.length < 5) {
+                document.getElementById('error').innerText = 'Ошибка в почте';
+                return;
+            }
+
+            if(phone.length < 5) {
+                document.getElementById('error').innerText = 'Ошибка в номере телефона';
+                return;
+            }
+
+            let data = {
+                name: name,
+                email: email,
+                phone: phone
+            }
+
+            tg.SendData(JSON.stringify(data))
+            tg.close();
         });
 
     </script>
